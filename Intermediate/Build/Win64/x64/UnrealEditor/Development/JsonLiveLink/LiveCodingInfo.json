@@ -1,0 +1,10 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.JsonLiveLink.cpp.obj": [
+			"JsonLiveLink.cpp.obj",
+			"JsonLiveLinkCommands.cpp.obj",
+			"JsonLiveLinkStyle.cpp.obj"
+		]
+	}
+}
