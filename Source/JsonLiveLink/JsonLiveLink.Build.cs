@@ -7,12 +7,13 @@ public class JSONLiveLink : ModuleRules
     public JSONLiveLink(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-
+        bLegacyPublicIncludePaths = false;
+        ShadowVariableWarningLevel = WarningLevel.Warning;
+        
         PublicDependencyModuleNames.AddRange(
             new string[]
             {
                 "Core",
-                "LiveLink",
                 "LiveLinkInterface",
                 "Messaging",
             });
@@ -30,7 +31,6 @@ public class JSONLiveLink : ModuleRules
                 "SlateCore",
                 "Sockets",
                 "LiveLink",
-                "LiveLinkCore",
             });
     }
 }
