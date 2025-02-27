@@ -7,15 +7,22 @@ public class JSONLiveLink : ModuleRules
     public JSONLiveLink(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-        bLegacyPublicIncludePaths = false;
-        ShadowVariableWarningLevel = WarningLevel.Warning;
-        
+
+        // Add the export definition
+        PublicDefinitions.Add("JSONLIVELINK_API=");
+
+        PublicIncludePaths.AddRange(
+            new string[]
+            {
+                // Add public include paths required here
+            }
+        );
+
         PublicDependencyModuleNames.AddRange(
             new string[]
             {
                 "Core",
                 "LiveLinkInterface",
-                "Messaging",
             });
 
         PrivateDependencyModuleNames.AddRange(

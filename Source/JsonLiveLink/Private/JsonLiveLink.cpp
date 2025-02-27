@@ -1,8 +1,8 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
+// Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "JSONLiveLink.h"
 #include "Modules/ModuleManager.h"
-#include "LiveLinkModule.h"
+#include "ILiveLinkModule.h" // Use this instead of LiveLinkModule.h
 
 #define LOCTEXT_NAMESPACE "FJSONLiveLinkModule"
 

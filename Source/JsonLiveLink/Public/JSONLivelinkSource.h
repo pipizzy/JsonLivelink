@@ -15,7 +15,7 @@ class FSocket;
 class ILiveLinkClient;
 class ISocketSubsystem;
 
-class JSONLIVELINK_API FJSONLiveLinkSource : public ILiveLinkSource, public FRunnable
+class FJSONLiveLinkSource : public ILiveLinkSource, public FRunnable
 {
 public:
     FJSONLiveLinkSource(FIPv4Endpoint Endpoint);
