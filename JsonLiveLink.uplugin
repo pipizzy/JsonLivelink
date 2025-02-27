@@ -2,23 +2,33 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
-	"FriendlyName": "JsonLiveLink",
-	"Description": "",
-	"Category": "Other",
-	"CreatedBy": "pipizzy",
+	"FriendlyName": "JSON LiveLink",
+	"Description": "A plugin to receive JSON data via UDP and feed it into the LiveLink system in Unreal Engine 5.3.",
+	"Category": "LiveLink",
+	"CreatedBy": "YourName",
 	"CreatedByURL": "",
 	"DocsURL": "",
 	"MarketplaceURL": "",
 	"SupportURL": "",
-	"CanContainContent": false,
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": false,
 	"Modules": [
 		{
-			"Name": "JsonLiveLink",
-			"Type": "Editor",
-			"LoadingPhase": "Default"
+			"Name": "JSONLiveLink",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
 		}
+	],
+	"Plugins": [
+		{
+			"Name": "LiveLink",
+			"Enabled": true
+		}
+	],
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"SupportedTargetPlatforms": [
+		"Win64",
+		"Mac",
+		"Linux"
 	]
 }

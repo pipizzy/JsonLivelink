@@ -25,8 +25,9 @@ public class JsonLiveLink : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core",
-				// ... add other public dependencies that you statically link with here ...
+                "Core",
+                "LiveLinkInterface",
+                "Messaging",
 			}
 			);
 			
@@ -34,16 +35,16 @@ public class JsonLiveLink : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Projects",
-				"InputCore",
-				"EditorFramework",
-				"UnrealEd",
-				"ToolMenus",
-				"CoreUObject",
-				"Engine",
-				"Slate",
-				"SlateCore",
-				// ... add private dependencies that you statically link with here ...	
+                "CoreUObject",
+                "Engine",
+                "InputCore",
+                "Json",
+                "JsonUtilities",
+                "Networking",
+                "Slate",
+                "SlateCore",
+                "Sockets",
+                "LiveLink",
 			}
 			);
 		
