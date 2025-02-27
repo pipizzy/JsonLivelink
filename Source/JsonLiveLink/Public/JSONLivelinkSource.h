@@ -5,6 +5,10 @@
 #include "HAL/ThreadSafeBool.h"
 #include "IMessageContext.h"
 #include "Interfaces/IPv4/IPv4Endpoint.h"
+#include "LiveLinkSourceSettings.h"
+
+// Enable logging
+DECLARE_LOG_CATEGORY_EXTERN(LogJSONLiveLink, Log, All)
 
 class FRunnableThread;
 class FSocket;

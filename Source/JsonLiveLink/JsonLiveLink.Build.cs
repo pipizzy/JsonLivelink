@@ -2,39 +2,24 @@
 
 using UnrealBuildTool;
 
-public class JsonLiveLink : ModuleRules
+public class JSONLiveLink : ModuleRules
 {
-	public JsonLiveLink(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
-		PublicIncludePaths.AddRange(
-			new string[] {
-				// ... add public include paths required here ...
-			}
-			);
-				
-		
-		PrivateIncludePaths.AddRange(
-			new string[] {
-				// ... add other private include paths required here ...
-			}
-			);
-			
-		
-		PublicDependencyModuleNames.AddRange(
-			new string[]
-			{
+    public JSONLiveLink(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicDependencyModuleNames.AddRange(
+            new string[]
+            {
                 "Core",
+                "LiveLink",
                 "LiveLinkInterface",
                 "Messaging",
-			}
-			);
-			
-		
-		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
+            });
+
+        PrivateDependencyModuleNames.AddRange(
+            new string[]
+            {
                 "CoreUObject",
                 "Engine",
                 "InputCore",
@@ -45,15 +30,7 @@ public class JsonLiveLink : ModuleRules
                 "SlateCore",
                 "Sockets",
                 "LiveLink",
-			}
-			);
-		
-		
-		DynamicallyLoadedModuleNames.AddRange(
-			new string[]
-			{
-				// ... add any modules that your module loads dynamically here ...
-			}
-			);
-	}
+                "LiveLinkCore",
+            });
+    }
 }

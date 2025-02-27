@@ -5,8 +5,11 @@
 #include "Common/UdpSocketBuilder.h"
 #include "HAL/RunnableThread.h"
 #include "Json.h"
+#include "Sockets.h"
 #include "SocketSubsystem.h"
 #include "Interfaces/IPv4/IPv4Endpoint.h"
+
+DEFINE_LOG_CATEGORY(LogJSONLiveLink);
 
 #define LOCTEXT_NAMESPACE "JSONLiveLinkSource"
 
@@ -22,6 +25,8 @@ FJSONLiveLinkSource::FJSONLiveLinkSource(FIPv4Endpoint InEndpoint)
     SourceStatus = LOCTEXT("SourceStatus_DeviceNotFound", "Device Not Found");
     SourceType = LOCTEXT("JSONLiveLinkSourceType", "JSON LiveLink");
     SourceMachineName = LOCTEXT("JSONLiveLinkSourceMachineName", "localhost");
+
+    UE_LOG(LogJSONLiveLink, Warning, TEXT("Setting up socket"));
 
     try
     {
@@ -40,10 +45,14 @@ FJSONLiveLinkSource::FJSONLiveLinkSource(FIPv4Endpoint InEndpoint)
             Start();
             SourceStatus = LOCTEXT("SourceStatus_Receiving", "Receiving");
         }
+        else
+        {
+            UE_LOG(LogJSONLiveLink, Error, TEXT("Failed to create socket"));
+        }
     }
     catch (...)
     {
-        UE_LOG(LogTemp, Error, TEXT("Exception in socket creation"));
+        UE_LOG(LogJSONLiveLink, Error, TEXT("Exception in socket creation"));
     }
 }
 
@@ -74,18 +83,21 @@ void FJSONLiveLinkSource::ReceiveClient(ILiveLinkClient* InClient, FGuid InSourc
 
 void FJSONLiveLinkSource::InitializeSettings(ULiveLinkSourceSettings* Settings)
 {
-    // No custom settings for now
+    // Settings initialization can be done here if needed
+    // Empty implementation is fine if there are no special requirements
 }
 
 void FJSONLiveLinkSource::Update()
 {
-    // Not needed for now
+    // This method might be called every frame in UE5.3
+    // No specific implementation needed unless there's content that needs updating each frame
 }
 
 bool FJSONLiveLinkSource::IsSourceStillValid() const
 {
     // Source is valid if we have a valid thread and socket
-    return !Stopping && Thread != nullptr && Socket != nullptr;
+    bool bIsSourceValid = !Stopping && Thread != nullptr && Socket != nullptr;
+    return bIsSourceValid;
 }
 
 bool FJSONLiveLinkSource::RequestSourceShutdown()
@@ -130,10 +142,14 @@ uint32 FJSONLiveLinkSource::Run()
                 {
                     if (Read > 0)
                     {
-                        UE_LOG(LogTemp, Log, TEXT("Received %d bytes from %s"), Read, *Sender->ToString(true));
+                        UE_LOG(LogJSONLiveLink, Log, TEXT("Received %d bytes from %s"), Read, *Sender->ToString(true));
 
                         // We'll parse JSON and forward to LiveLink in a future step
                     }
+                }
+                else
+                {
+                    UE_LOG(LogJSONLiveLink, Error, TEXT("Failed to receive data from socket"));
                 }
             }
         }

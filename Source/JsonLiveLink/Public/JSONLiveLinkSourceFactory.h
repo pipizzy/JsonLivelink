@@ -4,8 +4,11 @@
 #include "Interfaces/IPv4/IPv4Endpoint.h"
 #include "JSONLiveLinkSourceFactory.generated.h"
 
+/**
+ * Factory class for creating the JSON-based LiveLink source.
+ */
 UCLASS()
-class UJSONLiveLinkSourceFactory : public ULiveLinkSourceFactory
+class JSONLIVELINK_API UJSONLiveLinkSourceFactory : public ULiveLinkSourceFactory
 {
     GENERATED_BODY()
 
